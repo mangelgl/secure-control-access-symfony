@@ -24,8 +24,23 @@ services:
       - web_network
     restart: always
 
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - 8081:80
+    volumes:
+      - phpmyadmin_data:/sessions
+    networks:
+      - web_network
+    restart: always
+
 volumes:
   database_data:
+  phpmyadmin_data:
 
 networks:
   web_network:
